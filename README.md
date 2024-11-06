@@ -10,7 +10,7 @@ Human-readable byte size formatting and parsing.
 
 ```toml
 [dependencies]
-philiprehberger-byte-fmt = "0.1"
+philiprehberger-byte-fmt = "0.1.5"
 ```
 
 ## Usage
