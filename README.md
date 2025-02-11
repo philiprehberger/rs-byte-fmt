@@ -4,7 +4,7 @@
 [![Crates.io](https://img.shields.io/crates/v/philiprehberger-byte-fmt.svg)](https://crates.io/crates/philiprehberger-byte-fmt)
 [![License](https://img.shields.io/github/license/philiprehberger/rs-byte-fmt)](LICENSE)
 
-Human-readable byte size formatting and parsing.
+Human-readable byte size formatting and parsing
 
 ## Installation
 
