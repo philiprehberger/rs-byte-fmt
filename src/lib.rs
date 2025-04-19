@@ -27,6 +27,7 @@
 
 use std::fmt;
 use std::hash::{Hash, Hasher};
+use std::ops::{Add, Sub, AddAssign, SubAssign, Mul, Div, MulAssign, DivAssign};
 use std::str::FromStr;
 
 const KB: u64 = 1_000;
@@ -105,6 +106,7 @@ impl ByteSize {
     /// let size = ByteSize::from_bytes(1024);
     /// assert_eq!(size.as_bytes(), 1024);
     /// ```
+    #[must_use]
     pub fn from_bytes(n: u64) -> Self {
         Self(n)
     }
@@ -119,6 +121,7 @@ impl ByteSize {
     /// let size = ByteSize::from_kb(1.5);
     /// assert_eq!(size.as_bytes(), 1500);
     /// ```
+    #[must_use]
     pub fn from_kb(n: f64) -> Self {
         Self((n * KB as f64) as u64)
     }
@@ -133,6 +136,7 @@ impl ByteSize {
     /// let size = ByteSize::from_mb(2.5);
     /// assert_eq!(size.as_bytes(), 2_500_000);
     /// ```
+    #[must_use]
     pub fn from_mb(n: f64) -> Self {
         Self((n * MB as f64) as u64)
     }
@@ -147,6 +151,7 @@ impl ByteSize {
     /// let size = ByteSize::from_gb(1.5);
     /// assert_eq!(size.as_bytes(), 1_500_000_000);
     /// ```
+    #[must_use]
     pub fn from_gb(n: f64) -> Self {
         Self((n * GB as f64) as u64)
     }
@@ -161,6 +166,7 @@ impl ByteSize {
     /// let size = ByteSize::from_tb(1.0);
     /// assert_eq!(size.as_bytes(), 1_000_000_000_000);
     /// ```
+    #[must_use]
     pub fn from_tb(n: f64) -> Self {
         Self((n * TB as f64) as u64)
     }
@@ -189,6 +195,7 @@ impl ByteSize {
     /// assert_eq!(ByteSize::from_bytes(1_048_576).format_binary(), "1 MiB");
     /// assert_eq!(ByteSize::from_bytes(1_536).format_binary(), "1.5 KiB");
     /// ```
+    #[must_use]
     pub fn format_binary(&self) -> String {
         format_value(self.0, true, None)
     }
@@ -204,11 +211,134 @@ impl ByteSize {
     /// assert_eq!(size.with_precision(2).to_string(), "1.54 MB");
     /// assert_eq!(size.with_precision(0).to_string(), "2 MB");
     /// ```
+    /// Converts to kilobytes (SI) as `f64`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use philiprehberger_byte_fmt::ByteSize;
+    ///
+    /// let size = ByteSize::from_bytes(1_500);
+    /// assert_eq!(size.to_kb(), 1.5);
+    /// ```
+    #[must_use]
+    pub fn to_kb(&self) -> f64 {
+        self.0 as f64 / KB as f64
+    }
+
+    /// Converts to megabytes (SI) as `f64`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use philiprehberger_byte_fmt::ByteSize;
+    ///
+    /// let size = ByteSize::from_bytes(2_500_000);
+    /// assert_eq!(size.to_mb(), 2.5);
+    /// ```
+    #[must_use]
+    pub fn to_mb(&self) -> f64 {
+        self.0 as f64 / MB as f64
+    }
+
+    /// Converts to gigabytes (SI) as `f64`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use philiprehberger_byte_fmt::ByteSize;
+    ///
+    /// let size = ByteSize::from_bytes(1_500_000_000);
+    /// assert_eq!(size.to_gb(), 1.5);
+    /// ```
+    #[must_use]
+    pub fn to_gb(&self) -> f64 {
+        self.0 as f64 / GB as f64
+    }
+
+    /// Converts to terabytes (SI) as `f64`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use philiprehberger_byte_fmt::ByteSize;
+    ///
+    /// let size = ByteSize::from_bytes(2_000_000_000_000);
+    /// assert_eq!(size.to_tb(), 2.0);
+    /// ```
+    #[must_use]
+    pub fn to_tb(&self) -> f64 {
+        self.0 as f64 / TB as f64
+    }
+
+    #[must_use]
     pub fn with_precision(&self, precision: usize) -> FormattedByteSize {
         FormattedByteSize {
             bytes: self.0,
             precision,
         }
+    }
+}
+
+impl From<u64> for ByteSize {
+    fn from(bytes: u64) -> Self {
+        Self(bytes)
+    }
+}
+
+impl Add for ByteSize {
+    type Output = Self;
+
+    fn add(self, rhs: Self) -> Self {
+        Self(self.0 + rhs.0)
+    }
+}
+
+impl Sub for ByteSize {
+    type Output = Self;
+
+    fn sub(self, rhs: Self) -> Self {
+        Self(self.0 - rhs.0)
+    }
+}
+
+impl AddAssign for ByteSize {
+    fn add_assign(&mut self, rhs: Self) {
+        self.0 += rhs.0;
+    }
+}
+
+impl SubAssign for ByteSize {
+    fn sub_assign(&mut self, rhs: Self) {
+        self.0 -= rhs.0;
+    }
+}
+
+impl Mul<u64> for ByteSize {
+    type Output = Self;
+
+    fn mul(self, rhs: u64) -> Self {
+        Self(self.0 * rhs)
+    }
+}
+
+impl Div<u64> for ByteSize {
+    type Output = Self;
+
+    fn div(self, rhs: u64) -> Self {
+        Self(self.0 / rhs)
+    }
+}
+
+impl MulAssign<u64> for ByteSize {
+    fn mul_assign(&mut self, rhs: u64) {
+        self.0 *= rhs;
+    }
+}
+
+impl DivAssign<u64> for ByteSize {
+    fn div_assign(&mut self, rhs: u64) {
+        self.0 /= rhs;
     }
 }
 
