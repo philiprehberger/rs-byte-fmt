@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.8 (2026-03-22)
+
+- Fix CHANGELOG formatting
+
 ## 0.1.7 (2026-03-20)
 
 - Add arithmetic operators (Add, Sub, Mul, Div and their Assign variants) for ByteSize
@@ -11,6 +15,7 @@
 
 - Add readme, rust-version, documentation to Cargo.toml
 - Add Development section to README
+
 ## 0.1.5 (2026-03-16)
 
 - Update install snippet to use full version
