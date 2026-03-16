@@ -10,7 +10,7 @@ Human-readable byte size formatting and parsing.
 
 ```toml
 [dependencies]
-philiprehberger-byte-fmt = "0.1.5"
+philiprehberger-byte-fmt = "0.1.6"
 ```
 
 ## Usage
@@ -48,6 +48,14 @@ assert_eq!(size.with_precision(2).to_string(), "1.54 MB");
 | `.with_precision(n)` | Format with n decimal places |
 | `.to_string()` | Format using SI units (KB, MB, etc.) |
 | `"1.5 GB".parse::<ByteSize>()` | Parse from string |
+
+
+## Development
+
+```bash
+cargo test
+cargo clippy -- -D warnings
+```
 
 ## License
 
