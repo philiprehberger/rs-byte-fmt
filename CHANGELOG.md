@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.7 (2026-03-20)
+
+- Add arithmetic operators (Add, Sub, Mul, Div and their Assign variants) for ByteSize
+- Add unit conversion methods: to_kb(), to_mb(), to_gb(), to_tb()
+- Add From<u64> implementation for ByteSize
+- Add #[must_use] attributes on constructor and formatting methods
+
 ## 0.1.6 (2026-03-17)
 
 - Add readme, rust-version, documentation to Cargo.toml
