@@ -2,7 +2,11 @@
 
 [![CI](https://github.com/philiprehberger/rs-byte-fmt/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/rs-byte-fmt/actions/workflows/ci.yml)
 [![Crates.io](https://img.shields.io/crates/v/philiprehberger-byte-fmt.svg)](https://crates.io/crates/philiprehberger-byte-fmt)
+[![GitHub release](https://img.shields.io/github/v/release/philiprehberger/rs-byte-fmt)](https://github.com/philiprehberger/rs-byte-fmt/releases)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/rs-byte-fmt)](https://github.com/philiprehberger/rs-byte-fmt/commits/main)
 [![License](https://img.shields.io/github/license/philiprehberger/rs-byte-fmt)](LICENSE)
+[![Bug Reports](https://img.shields.io/github/issues/philiprehberger/rs-byte-fmt/bug)](https://github.com/philiprehberger/rs-byte-fmt/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+[![Feature Requests](https://img.shields.io/github/issues/philiprehberger/rs-byte-fmt/enhancement)](https://github.com/philiprehberger/rs-byte-fmt/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
 [![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 Human-readable byte size formatting and parsing
@@ -11,7 +15,7 @@ Human-readable byte size formatting and parsing
 
 ```toml
 [dependencies]
-philiprehberger-byte-fmt = "0.1.8"
+philiprehberger-byte-fmt = "0.1.9"
 ```
 
 ## Usage
@@ -84,6 +88,13 @@ cargo test
 cargo clippy -- -D warnings
 ```
 
+## Support
+
+If you find this package useful, consider giving it a star on GitHub — it helps motivate continued maintenance and development.
+
+[![LinkedIn](https://img.shields.io/badge/Philip%20Rehberger-LinkedIn-0A66C2?logo=linkedin)](https://www.linkedin.com/in/philiprehberger)
+[![More packages](https://img.shields.io/badge/more-open%20source%20packages-blue)](https://philiprehberger.com/open-source-packages)
+
 ## License
 
-MIT
+[MIT](LICENSE)
